@@ -41,13 +41,14 @@ public class Snake : MonoBehaviour
 		return isDead;
 	}
 
-	public void SetIsAI (bool ai)
+	public void SetAI (bool ai)
 	{
 		if (ai) {
 			isAI = ai;
-			speed *= 1.4f;
+			speed *= 1.0f;
 
-			Invoke ("AiRun", Random.Range (1.0f, 3.0f));
+			InvokeRepeating ("AiRun", 0.0f, Random.Range (2.0f, 3.0f));
+			InvokeRepeating ("CheckAiIsCloseToWall", 0.0f, 0.1f);
 		}
 	}
 
@@ -80,20 +81,26 @@ public class Snake : MonoBehaviour
 	void AiRun ()
 	{
 		if (!isDead) {
-			string prev = "Body";
+			/*string prev = "Body";
 			foreach (GameObject obj in bodys) {
 				obj.tag = "Self";
-			}
+			}*/
 			Vector2 dir = sh.CalcDirction (dirctHead);
 			RoateHead (dir);	
 
-			foreach (GameObject obj in bodys) {
+			/*foreach (GameObject obj in bodys) {
 				obj.tag = prev;
-			}
-
-			Invoke ("AiRun", Random.Range (2.0f, 5.0f));
+			}*/
 		}
 			
+	}
+
+	void CheckAiIsCloseToWall ()
+	{
+		if (isAI && !isDead && GlobalControl.Instance.IsCloseToWall (sh.transform.position)) { //如果AITail靠近墙体，则调用Ai算法，求方向;
+			//Debug.Log ("-------------------Too close to wall--------------------");
+			AiRun ();
+		}
 	}
 
 	void InitOneSnake ()
@@ -135,10 +142,7 @@ public class Snake : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-		if (isAI && !isDead && GlobalControl.Instance.IsCloseToWall (sh.transform.position)) { //如果AITail靠近墙体，则调用Ai算法，求方向;
-			Debug.Log ("-------------------Too close to wall--------------------");
-			AiRun ();
-		}
+		
 	}
 
 	void Start ()

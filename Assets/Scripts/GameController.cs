@@ -58,7 +58,7 @@ public class GameController : MonoBehaviour
 			AiPlayers [i] = (GameObject)Instantiate (prefabs [i % 2], new Vector3 (0.0f, 0.0f, 0.0f), Quaternion.identity);
 			Snake sn = AiPlayers [i].gameObject.GetComponent<Snake> ();
 			sn.SetColor (Color.red);
-			sn.SetIsAI (true);
+			sn.SetAI (true);
 		}
 
 

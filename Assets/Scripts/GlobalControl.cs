@@ -88,7 +88,7 @@ public class GlobalControl : MonoBehaviour
 
 	public bool IsCloseToWall (Vector2 selfPos)
 	{
-		if (Mathf.Abs (Mathf.Abs (selfPos.x) - mapWidth) < 30.0f ||
+		if (Mathf.Abs (Mathf.Abs (selfPos.x) - mapWidth) < 40.0f ||
 		    Mathf.Abs (Mathf.Abs (selfPos.y) - mapHeight) < 40.0f)
 			return true;
 		else

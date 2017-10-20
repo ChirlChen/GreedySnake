@@ -46,14 +46,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\AiSnake.cs" />
      <Compile Include="Assets\Scripts\GameController.cs" />
      <Compile Include="Assets\Scripts\GlobalControl.cs" />
      <Compile Include="Assets\Scripts\Menu.cs" />
      <Compile Include="Assets\Scripts\Snake.cs" />
-     <Compile Include="Assets\Scripts\SnakeBody.cs" />
      <Compile Include="Assets\Scripts\SnakeHead.cs" />
-     <Compile Include="Assets\Scripts\SnakeTail.cs" />
      <None Include="Assets\Figs\说明.txt" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>

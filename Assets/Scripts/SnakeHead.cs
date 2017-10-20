@@ -36,7 +36,7 @@ public class SnakeHead : MonoBehaviour
 				//Debug.Log ("---------------- Self ----------------" + tmpForce.x + "," + tmpForce.y);
 			} else {
 				//Debug.Log ("---------------- Other Body ----------------" + tmpForce.x + "," + tmpForce.y);
-				//force -= 0.0f * tmpForce;
+				//wallForce -= 2.0f * tmpForce;
 			}
 					
 		}
@@ -48,25 +48,22 @@ public class SnakeHead : MonoBehaviour
 		
 		if (force == new Vector2 (0.0f, 0.0f) || force == -dirctHead) {
 			Vector2 randDirc = dirctHead + Vector2.one * (-(dirctHead.x + dirctHead.y));
-			Debug.Log ("************************Rand direction**************************" + randDirc);
+			//Debug.Log ("************************Rand direction**************************" + randDirc);
 				
 			return randDirc;
 		} else {
-			Debug.Log ("************************Calced direction**************************" + force);
+			//Debug.Log ("************************Calced direction**************************" + force);
 			return force;	
 		}
 	}
 
 	Vector2 OptDirction (Vector2 curDirc, Vector2 calcDirc) //对计算出来的方向进行优化；
 	{
-		if (calcDirc == new Vector2 (0.0f, 0.0f)) {
-			return curDirc;
-		} else if (calcDirc == -curDirc) {
-			Debug.Log ("************************Opt Rand direction**************************");
+		if (calcDirc == new Vector2 (0.0f, 0.0f) || calcDirc == -curDirc) {
+			//Debug.Log ("************************Opt Rand direction**************************");
 			Vector2 randDirc = curDirc + Vector2.one * (-(curDirc.x + curDirc.y));
 			randDirc *= Random.Range (0.0f, 2.0f) < 1.0f ? 1 : -1;
 			return randDirc;	
-
 		} else
 			return calcDirc;
 	}
